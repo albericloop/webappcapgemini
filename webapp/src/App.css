@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-image: url("fond.jpg");
+  height: 900px;
 }
 
 .App-logo {
