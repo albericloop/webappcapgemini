@@ -84,9 +84,6 @@ class App extends Component {
   }
 
   renderRecipe(){
-    let ingredient =  this.state.ingredients.map(x=>
-      <DropdownItem>{x}</DropdownItem>
-    )
    return(
      <div className="recipe">
        <Button color="success" onClick={() => this.getrecipe()}>
@@ -94,12 +91,13 @@ class App extends Component {
        </Button><br/ ><br/>
        <p>Pays: {this.state.data.cuisine}</p>
        <h2>{this.state.cuisine}</h2>
-       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+       {/*<Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
        <DropdownToggle caret>Ingrédients</DropdownToggle>
          <DropdownMenu>
          {ingredient}
          </DropdownMenu>
-       </Dropdown>
+       </Dropdown> */}
+       {this.renderIngredients}
      </div>
    )
  }
