@@ -75,12 +75,8 @@ class App extends Component {
    return(
      <div className="recipe">
        <h2>{this.state.data.title}</h2>
-       <h3>{this.state.data.teaser}</h3>
        <p>Pays d''origine: {this.state.data.cuisine}</p>
-       <ul>Ingrédients: {this.state.data.ingredients.map((ingredient) =>
-       <li></li>)}</ul>
-       <p> {this.state.data.country}</p>
-       <p>Temps de préparation: {this.state.data.time}</p>
+       <ul></ul>
      </div>
    )
  }

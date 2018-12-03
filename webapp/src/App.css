@@ -7,6 +7,16 @@
   height: 40vmin;
 }
 
+.recipe{
+  border-radius: 3px;
+  background-color: grey;
+  width:200px;
+  height: 600 px;
+  text-align: center;
+  position: relative;
+
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
