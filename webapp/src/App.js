@@ -19,6 +19,7 @@ class App extends Component {
     this.state={
       data:"",
       urlrecipe:"http://51.75.249.160:3001/en",
+      urlimage:"http://localhost:4000/",
       title:"",
       teaser:"",
       cuisine:"",
@@ -61,9 +62,19 @@ class App extends Component {
   }
 
   getingredients(ingredients){
+
     var listItems = ingredients;
-    //var myArrStr = JSON.parse(listItems);
-    this.setState({ ingredients:listItems })
+    var listIngredients = new Array();
+    listItems.forEach(ingredient => {
+      console.log(this.state.urlimage + ingredient);
+      fetch(this.state.urlimage + ingredient)
+        .then(response => response.json())
+        .then(data =>{
+          listIngredients.push({name:ingredient,image:data.url})
+          this.setState({ ingredients:listIngredients })
+          console.log(data.url)
+        });
+    })
   }
 
   toggle() {
@@ -93,9 +104,30 @@ class App extends Component {
    )
  }
 
+ renderIngredients(){
+   if(typeof this.state.ingredients != 'undefined')
+    {
+      let ingredient = this.state.ingredients.map(x=>
+        <div>
+          <p>{x.image}</p>
+          <p>{x.name}</p>
+          <img src={x.image}/>
+        </div>
+      )
+      return ingredient;
+    }
+ }
 
   render() {
-    return(<div className="App">{this.renderRecipe()}</div>)
+    return (
+      <div className="App">
+          <Button onClick={() => this.getrecipe()}>
+            Fetch recipe
+          </Button>
+          <p>{this.state.data.title}</p>
+          {this.renderRecipe()}
+      </div>
+    );
   }
 
 }
