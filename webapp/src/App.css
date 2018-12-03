@@ -1,10 +1,24 @@
 .App {
   text-align: center;
+  background-image: url("fond.jpg");
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
+}
+
+.recipe{
+  border-radius: 3px;
+  border-width: 5px;
+  border-color: black;
+
+  width:400px;
+  height: 600 px;
+  text-align: center;
+  margin-left: 38%;
+
+
 }
 
 .App-header {

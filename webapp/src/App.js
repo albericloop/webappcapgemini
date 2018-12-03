@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import logo from './logo.svg';
+import fond from './fond.jpg';
 import './App.css';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,6 +8,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import '../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 class App extends Component {
 
@@ -19,14 +22,16 @@ class App extends Component {
       urlimage:"http://localhost:4000/",
       title:"",
       teaser:"",
-      type:"",
+      cuisine:"",
       cheff:"",
       photographer:"",
       country:"",
       time:"",
-      ingredients:new Array()
+      ingredients:new Array(),
+      dropdownOpen: false
     }
     this.getrecipe = this.getrecipe.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   /*const styles = theme => ({
@@ -72,15 +77,29 @@ class App extends Component {
     })
   }
 
+  toggle() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
+  }
+
   renderRecipe(){
+    let ingredient =  this.state.ingredients.map(x=>
+      <DropdownItem>{x}</DropdownItem>
+    )
    return(
      <div className="recipe">
-       <h2>{this.state.data.title}</h2>
-       <h3>{this.state.data.teaser}</h3>
-       <p>Pays d''origine: {this.state.data.cuisine}</p>
-       {this.renderIngredients()}
-       <p> {this.state.data.country}</p>
-       <p>Temps de préparation: {this.state.data.time}</p>
+       <Button color="success" onClick={() => this.getrecipe()}>
+         Charger une recette
+       </Button><br/ ><br/>
+       <p>Pays: {this.state.data.cuisine}</p>
+       <h2>{this.state.cuisine}</h2>
+       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+       <DropdownToggle caret>Ingrédients</DropdownToggle>
+         <DropdownMenu>
+         {ingredient}
+         </DropdownMenu>
+       </Dropdown>
      </div>
    )
  }
@@ -110,9 +129,7 @@ class App extends Component {
       </div>
     );
   }
+
 }
-/*<p>cuisine:{this.state.data.cuisine}</p>
-          <p>ingrédients:{this.state.data.ingredients}</p>
-          {typeof this.state.data.ingredients == 'undefined'?
-          <p></p>:<p>{this.state.data.ingredients.length}</p>}*/
+
 export default App;
