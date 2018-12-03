@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-image: url("fond.jpg");
 }
 
 .App-logo {
@@ -9,11 +10,14 @@
 
 .recipe{
   border-radius: 3px;
-  background-color: grey;
-  width:200px;
+  border-width: 5px;
+  border-color: black;
+
+  width:400px;
   height: 600 px;
   text-align: center;
-  position: relative;
+  margin-left: 38%;
+
 
 }
 
