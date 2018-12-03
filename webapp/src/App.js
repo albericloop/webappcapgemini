@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state={
       data:"",
-      urlrecipe:"http://51.75.249.160:3001/",
+      urlrecipe:"http://51.75.249.160:3001/en",
       title:"",
       teaser:"",
       type:"",
@@ -26,7 +26,9 @@ class App extends Component {
     fetch(this.state.urlrecipe)
       .then(response => response.json())
       .then(data =>
-        this.setState({ data:data })/*,
+        this.setState({ data:data }),
+        this.getingredients()
+        /*,
         this.setState({ title:this.state.data.title }),
         this.setState({ teaser:this.state.data.teaser }),
         this.setState({ type:this.state.data.type }),
@@ -38,6 +40,12 @@ class App extends Component {
       );
   }
 
+  getingredients(){
+    var listItems = this.state.data.ingredients;
+    const myArrStr = JSON.stringify(listItems);
+    this.setState({ ingredients:myArrStr })
+  }
+
   render() {
     return (
       <div className="App">
@@ -46,11 +54,12 @@ class App extends Component {
             Fetch recipe
           </Button>
 
-          <p>{this.state.data.title}</p>
-
       </div>
     );
   }
 }
-
+/*          <p>cuisine:{this.state.data.cuisine}</p>
+          <p>ingrédients:{this.state.data.ingredients}</p>
+          {typeof this.state.data.ingredients == 'undefined'?
+          <p></p>:<p>{this.state.data.ingredients.length}</p>}*/
 export default App;
