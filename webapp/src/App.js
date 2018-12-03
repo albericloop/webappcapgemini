@@ -3,6 +3,22 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+      urlrecipe:"http://51.75.249.160:3001/",
+      title:"",
+      teaser:"",
+      type:"",
+      cheff:"",
+      photographer:"",
+      country:"",
+      time:"",
+      ingredients:new Array()
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -22,6 +38,12 @@ class App extends Component {
         </header>
       </div>
     );
+  }
+
+  getrecipe(){
+    fetch(this.state.urlrecipe)
+      .then(response => response.json())
+      .then(data => this.setState({ data }));
   }
 }
 
